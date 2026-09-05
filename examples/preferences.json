@@ -1,0 +1,13 @@
+{
+  "app": "Monologue",
+  "shortcut": {
+    "keyCode": 2,
+    "modifiers": 786432,
+    "keyLabel": "D"
+  },
+  "control": "paddle",
+  "mode": "hold",
+  "transport": "audio",
+  "audioDeviceUID": "",
+  "orangeSubmits": true
+}
