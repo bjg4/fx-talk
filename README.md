@@ -23,6 +23,20 @@ FX-MIC on AAA batteries → curly 3.5 mm cable → USB audio input adapter → M
 
 FX Talk decodes button signals locally. Monologue, Wispr Flow, Aqua Voice, or another separately installed dictation app handles transcription. FX Talk does not save recordings, inspect draft text, or send network requests.
 
+## Tested hardware
+
+This is the hardware used for physical testing of FX Talk 0.4.0:
+
+| Component | Verified setup |
+| --- | --- |
+| Microphone | [Teenage Engineering EP–2350 FX-MIC](https://teenage.engineering/store/ep-2350), from the EP series, running firmware **1.0.9**. [Official device guide](https://teenage.engineering/guides/ep-2350). |
+| Audio adapter | [CableCreation](https://www.cablecreation.com/) USB audio adapter, shown in macOS as **Cable Creation**, with C-Media audio and a **48 kHz mono input**. Exact retail model is pending confirmation. |
+| Mac | **M4 MacBook Air**, running **macOS 15.6.1**. |
+
+The tested mic runs on **two AAA batteries**, with its **curly 3.5 mm audio cable** connected through the adapter to the Mac. The mic’s direct USB-C connection is needed temporarily for initial setup; it stays unplugged during normal use.
+
+The adapter link goes to the manufacturer’s site; a purchase link will be added once the exact model is confirmed. See [adapter identification and compatibility limits](docs/COMPATIBILITY.md#tested-adapter-identification) before choosing another adapter.
+
 ## Download
 
 Get the app and the complete transfer kit from **[Releases](https://github.com/bjg4/fx-talk/releases)**.
@@ -32,7 +46,7 @@ The **v0.4.0 release** contains the Apple-silicon build physically verified with
 ## Setup on a Mac
 
 1. Move FX Talk.app to Applications and install your chosen dictation app separately.
-2. Use an audio input adapter that supports 48 kHz and passes the 16.5–19.5 kHz control signals. Cable Creation with C-Media audio was verified. Output-only headphone adapters do not provide the required input.
+2. Use an audio input adapter that supports 48 kHz and passes the 16.5–19.5 kHz control signals. See the [tested hardware](#tested-hardware) above. Output-only headphone adapters do not provide the required input.
 3. Allow FX Talk Microphone and Accessibility access. Choose **Audio cable only**, select the adapter, and click **Listen on this input**.
 4. Select the same adapter in your dictation app. Configure the same hold shortcut in both apps; the verified Monologue setup uses **Left Control + Left Option + D**.
 5. Choose **Large squeeze paddle**, enable **Orange button presses Enter in any app**, and enable mic shortcuts.
