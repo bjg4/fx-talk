@@ -4,8 +4,13 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '41 14 * * 1'
 permissions:
   contents: read
+concurrency:
+  group: test.yml-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   test:
     runs-on: macos-latest
