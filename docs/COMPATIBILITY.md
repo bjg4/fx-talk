@@ -5,7 +5,7 @@
 - App: FX Talk 0.4.0, Apple silicon (arm64), exact installed executable.
 - Physical test Mac: M4 MacBook Air, macOS 15.6.1. Declared app minimum: macOS 13.
 - Mic: [Teenage Engineering EP–2350 FX-MIC](https://teenage.engineering/store/ep-2350), existing firmware 1.0.9. [Official device guide](https://teenage.engineering/guides/ep-2350).
-- Adapter: [CableCreation](https://www.cablecreation.com/), C-Media USB mono audio input, 48 kHz. Exact retail model is pending confirmation; see the identification below.
+- Adapter: [CableCreation](https://www.cablecreation.com/) USB-C audio adapter purchased from Amazon, C-Media mono audio input, 48 kHz. Exact retail model is pending confirmation; see the identification below.
 - Dictation: Monologue 1.5.0 (99), hold shortcut Left Control + Left Option + D.
 - Battery-powered operation through curly audio cable only, paddle dictation, and orange Enter confirmed by the user.
 - Enter events logged in the current chat app and Grok Bot. Other apps have not each been physically tested; output uses the same unmodified Return event in every app.
@@ -14,7 +14,7 @@
 
 ## Tested adapter identification
 
-macOS System Information reports the following for the physical adapter used in testing:
+The owner confirmed a CableCreation USB-C adapter purchased from Amazon. macOS System Information reports the following for the physical adapter used in testing:
 
 | Field | Observed value |
 | --- | --- |

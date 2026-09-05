@@ -30,7 +30,7 @@ This is the hardware used for physical testing of FX Talk 0.4.0:
 | Component | Verified setup |
 | --- | --- |
 | Microphone | [Teenage Engineering EP–2350 FX-MIC](https://teenage.engineering/store/ep-2350), from the EP series, running firmware **1.0.9**. [Official device guide](https://teenage.engineering/guides/ep-2350). |
-| Audio adapter | [CableCreation](https://www.cablecreation.com/) USB audio adapter, shown in macOS as **Cable Creation**, with C-Media audio and a **48 kHz mono input**. Exact retail model is pending confirmation. |
+| Audio adapter | [CableCreation](https://www.cablecreation.com/) **USB-C audio adapter**, purchased from Amazon, shown in macOS as **Cable Creation**, with C-Media audio and a **48 kHz mono input**. Exact retail model is pending confirmation. |
 | Mac | **M4 MacBook Air**, running **macOS 15.6.1**. |
 
 The tested mic runs on **two AAA batteries**, with its **curly 3.5 mm audio cable** connected through the adapter to the Mac. The mic’s direct USB-C connection is needed temporarily for initial setup; it stays unplugged during normal use.
