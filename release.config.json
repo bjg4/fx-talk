@@ -1,0 +1,10 @@
+{
+  "id": "fx-talk",
+  "name": "FX Talk",
+  "bundleId": "local.bjg.fxtalk",
+  "appPath": "dist/FX Talk.app",
+  "minimumSystemVersion": "13.0",
+  "architectures": ["arm64"],
+  "build": ["zsh", "build.sh"],
+  "entitlements": "packaging/entitlements.plist"
+}

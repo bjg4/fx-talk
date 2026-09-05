@@ -1,5 +1,7 @@
 .build/
 dist/
+release-output/
+*.proof
 .swiftpm/
 .DS_Store
 __pycache__/
