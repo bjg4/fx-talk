@@ -7,13 +7,14 @@ cd "$project_dir"
 swift test --scratch-path "$build_dir"
 python3 device/generate_signals.py
 python3 device/test_device.py
-swift build -c release --scratch-path "$build_dir"
+swift build -c release --arch arm64 --scratch-path "$build_dir"
+binary_dir=$(swift build -c release --arch arm64 --scratch-path "$build_dir" --show-bin-path)
 # Package outside synced folders, which can attach Finder metadata during signing.
 package_dir=$(mktemp -d "${TMPDIR:-/tmp}/fx-talk-package.XXXXXX")
 trap 'rm -rf "$package_dir"' EXIT
 bundle="$package_dir/FX Talk.app"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources" "$output_dir"
-cp "$build_dir/release/FXTalk" "$bundle/Contents/MacOS/FXTalk"
+cp "$binary_dir/FXTalk" "$bundle/Contents/MacOS/FXTalk"
 cp packaging/Info.plist "$bundle/Contents/Info.plist"
 cp ThirdParty/Tingle-LICENSE.txt "$bundle/Contents/Resources/ThirdPartyLicenses.txt"
 cp LICENSE "$bundle/Contents/Resources/FXTalk-LICENSE.txt"
