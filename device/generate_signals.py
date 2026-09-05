@@ -1,3 +1,5 @@
+# Chirp synthesis adapted from Tingle, Copyright (c) 2026 Tutor Intelligence, Inc.
+# MIT license: ../ThirdParty/Tingle-LICENSE.txt.
 """Generate FX Talk's exact 48 kHz chirp alphabet using only Python's stdlib."""
 import json
 import math

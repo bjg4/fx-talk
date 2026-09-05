@@ -14,14 +14,14 @@ Use FX Talk as the project name. Warm gray, graphite, orange, compact monospaced
 
 The first asset is `assets/fx-talk-banner.svg`, used by the README. A short real-device demonstration should follow: show both cables, unplug direct USB, dictate, and submit with one orange press. A human-recorded demonstration is still needed; do not present a mockup as a real test.
 
-## Before changing repository visibility
+## Public release preparation
 
-- Approve a license for the original FX Talk code. MIT is proposed; Tingle’s MIT license and attribution remain intact. The proposal is not yet applied.
+- The original FX Talk code is licensed under [MIT](../LICENSE). Tingle’s MIT license and attribution remain intact; [NOTICE.md](../NOTICE.md) identifies adapted code and FX Talk-specific work.
 - Review repository history, release archives, signing-certificate identity, and Actions logs as public material. Exclude credentials, private keys, recordings, and device backups. Keep a clean copy of the accepted v0.4.0 package.
 - Keep v0.4.0 marked as a prerelease with its exact tested configuration and known limitations.
 - Provide reproducible build instructions and a clear way to report device, firmware, adapter, macOS, dictation app, and the observed behavior without uploading private text or recordings.
 
-Making a repository public exposes its contents and Actions history/logs. See [GitHub’s visibility guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility). The proposed [MIT license](https://choosealicense.com/licenses/mit/) allows reuse, modification, and redistribution with its notice retained.
+Making a repository public exposes its contents and Actions history/logs. See [GitHub’s visibility guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility). The [MIT license](https://choosealicense.com/licenses/mit/) allows reuse, modification, and redistribution with its notice retained.
 
 ## Next release: someone else can set it up
 

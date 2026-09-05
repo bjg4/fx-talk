@@ -4,7 +4,7 @@
 
 **Hold. Speak. Enter.** An experimental macOS utility that turns the Teenage Engineering EP–2350 FX-MIC into a physical controller for dictation and the Enter key.
 
-Built with **GPT-6 Astra in Codex**, developed and physically tested by [Blake Graham](https://github.com/bjg4). The audio signaling builds on [Tingle](https://github.com/tutorintelligence/tingle). This is an independent project, not affiliated with or endorsed by Teenage Engineering or OpenAI.
+Built with **GPT-6 Astra in Codex**, developed and physically tested by [Blake Graham](https://github.com/bjg4). The core audio decoder and chirp generator are adapted from [Tingle](https://github.com/tutorintelligence/tingle); see the [source provenance](NOTICE.md). This is an independent project, not affiliated with or endorsed by Teenage Engineering or OpenAI.
 
 **[Download v0.4.0](https://github.com/bjg4/fx-talk/releases/tag/v0.4.0)** · **[Setup guide](docs/TRANSFER-GUIDE.md)** · **[Compatibility](docs/COMPATIBILITY.md)** · **[Roadmap](ROADMAP.md)**
 
@@ -91,6 +91,10 @@ Reusing an identity preserves the app’s identity across development builds. No
 - The mic’s sample slots and clean-speech presets are used by the signaling installation.
 
 See [architecture](docs/ARCHITECTURE.md), [compatibility](docs/COMPATIBILITY.md), and [planned improvements](ROADMAP.md).
+
+## License
+
+FX Talk is [MIT-licensed](LICENSE). Adapted Tingle code retains its original MIT copyright and license notice. See [NOTICE.md](NOTICE.md) for the exact source provenance and scope of our additions.
 
 ## Credits
 
