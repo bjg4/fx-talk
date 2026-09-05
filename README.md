@@ -1,6 +1,14 @@
+![FX Talk — Hold. Speak. Enter. Built with GPT-6 Astra in Codex.](docs/assets/fx-talk-banner.png)
+
 # FX Talk
 
-Use a Teenage Engineering EP–2350 FX-MIC to dictate into Mac apps and press Enter with the orange button. Normal use needs only the mic’s curly audio cable and a USB audio input adapter.
+**Hold. Speak. Enter.** An experimental macOS utility that turns the Teenage Engineering EP–2350 FX-MIC into a physical controller for dictation and the Enter key.
+
+Built with **GPT-6 Astra in Codex**, developed and physically tested by [Blake Graham](https://github.com/bjg4). The audio signaling builds on [Tingle](https://github.com/tutorintelligence/tingle). This is an independent project, not affiliated with or endorsed by Teenage Engineering or OpenAI.
+
+**[Download v0.4.0](https://github.com/bjg4/fx-talk/releases/tag/v0.4.0)** · **[Setup guide](docs/TRANSFER-GUIDE.md)** · **[Compatibility](docs/COMPATIBILITY.md)** · **[Roadmap](ROADMAP.md)**
+
+Normal use needs only the mic’s curly audio cable and a USB audio input adapter. This is a working prototype with one verified hardware combination; installation is still assisted and the app is not yet notarized.
 
 ```text
 FX-MIC on AAA batteries → curly 3.5 mm cable → USB audio input adapter → Mac

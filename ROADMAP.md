@@ -1,6 +1,6 @@
 # Useful next additions
 
-These are proposals; the accepted 0.4.0 app and mic behavior have not been changed.
+These are proposals; the accepted 0.4.0 app and mic behavior have not been changed. The next release prioritizes guided setup, complete backup/restore, distribution, and independent testing; see the [public release plan](docs/PUBLIC-RELEASE.md).
 
 1. Automatic startup and recovery: launch at login; optionally resume after Mac sleep once the adapter is present and both controls have been seen released. Preserve one-shot Enter behavior.
 2. Clear feedback: a compact ready/listening/disconnected indicator, plus a visible confirmation when FX Talk detects orange and sends Enter. Distinguish our button/shortcut status from transcription status reported by the dictation app.

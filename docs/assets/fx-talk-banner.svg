@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+<title id="title">FX Talk — Hold. Speak. Enter.</title>
+<desc id="desc">Experimental Mac utility for the FX-MIC. Built with GPT-6 Astra in Codex. An independent project.</desc>
+<rect width="1280" height="520" fill="#e9e7df"/>
+<g fill="#1d1e1b" font-family="Menlo,Consolas,monospace">
+<text x="48" y="43" font-size="15" letter-spacing="1.5">FX / TALK</text>
+<text x="265" y="43" font-size="15" letter-spacing="1.5">VOICE CONTROL FOR YOUR MAC</text>
+<text x="1232" y="43" font-size="15" text-anchor="end">EXPERIMENTAL / 0.4</text>
+</g>
+<path d="M48 64H1232" stroke="#1d1e1b"/>
+<text x="42" y="211" font-family="DIN Condensed,Impact,Haettenschweiler,sans-serif" font-weight="700" font-size="174" letter-spacing="-1.5" fill="#1d1e1b">FX TALK</text>
+<g fill="#1d1e1b" font-family="Futura,Trebuchet MS,sans-serif" font-size="28">
+<text x="49" y="259">Hold. Speak. Enter.</text>
+<text x="49" y="300" font-size="20">Your FX-MIC. A curly cable. The app in front of you.</text>
+</g>
+<g transform="translate(914 90)">
+<rect width="318" height="230" rx="3" fill="none" stroke="#7e8078"/>
+<g font-family="Menlo,Consolas,monospace" font-size="12" fill="#1d1e1b">
+<text x="18" y="27" letter-spacing="1">CONTROL / AUDIO</text>
+<text x="300" y="27" text-anchor="end">01—02</text>
+</g>
+<path d="M18 42H300" stroke="#a8a99f"/>
+<rect x="29" y="65" width="48" height="116" rx="24" fill="#272823"/>
+<path d="M47 88V158M59 88V158" stroke="#92958a" stroke-width="2"/>
+<path d="M94 123H137" stroke="#7e8078" stroke-width="1.5"/>
+<circle cx="142" cy="123" r="3" fill="#7e8078"/>
+<circle cx="229" cy="123" r="61" fill="#f45b24"/>
+<path d="M251 104V130H207M216 119L205 130L216 141" fill="none" stroke="#1d1e1b" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>
+<g font-family="Menlo,Consolas,monospace" font-size="12" fill="#1d1e1b">
+<text x="53" y="208" text-anchor="middle">HOLD</text>
+<text x="229" y="208" text-anchor="middle">ENTER</text>
+</g>
+</g>
+<g stroke="#1d1e1b" fill="none">
+<path d="M48 352H1232M48 456H1232M442 352V456M837 352V456"/>
+</g>
+<g font-family="Menlo,Consolas,monospace" fill="#1d1e1b">
+<text x="48" y="388" font-size="14" letter-spacing="1">01 / SQUEEZE THE PADDLE</text>
+<text x="48" y="428" font-size="22">Speak your message.</text>
+<text x="466" y="388" font-size="14" letter-spacing="1">02 / RELEASE</text>
+<text x="466" y="428" font-size="22">Wait for your words.</text>
+<text x="861" y="388" font-size="14" letter-spacing="1">03 / TAP ORANGE</text>
+<text x="861" y="428" font-size="22">Enter in any app.</text>
+<text x="48" y="492" font-size="14" letter-spacing="0.8">BUILT WITH GPT-6 ASTRA IN CODEX</text>
+<text x="1232" y="492" font-size="12" text-anchor="end" letter-spacing="0.8">INDEPENDENT PROJECT</text>
+</g>
+</svg>
