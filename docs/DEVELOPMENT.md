@@ -14,7 +14,7 @@ From the repository root:
 zsh build.sh
 ```
 
-This runs **24 Swift tests and nine Python device tests**, regenerates the mic signals, builds the app for the host architecture, and writes `dist/FX Talk.app` and `dist/FX Talk.zip`. Tests simulate controls and audio; they do not inject keyboard events into the session. GitHub Actions runs the same tests and compiles the app.
+This runs **31 Swift tests and nine Python device tests**, regenerates the mic signals, builds the app for Apple silicon (arm64), and writes `dist/FX Talk.app` and `dist/FX Talk.zip`. Tests simulate controls and audio; they do not inject keyboard events into the session. GitHub Actions runs the same tests and compiles the app.
 
 The build does not install or launch the app. Generated build products remain outside version control. After building, confirm that signal generation preserved the checked-in mic payload:
 
@@ -28,7 +28,7 @@ Builds use an ad hoc signature by default. To use a stable local signing identit
 FX_TALK_SIGN_IDENTITY='your signing identity' zsh build.sh
 ```
 
-Reusing an identity preserves the app’s identity across development builds. No signing private key, account token, or dictation preferences file is distributed. The supplied v0.4.0 release binary is arm64; Intel and other operating systems need separate builds or ports and testing. See [compatibility and distribution requirements](COMPATIBILITY.md).
+Reusing an identity preserves the app’s identity across development builds. No signing private key, account token, or dictation preferences file is distributed. The supplied release binary is arm64; Intel and other operating systems need separate builds or ports and testing. See [compatibility and distribution requirements](COMPATIBILITY.md).
 
 ## Source layout
 

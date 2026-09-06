@@ -18,3 +18,9 @@ Source areas:
 - Sources/FXTalkCore: button routing, serial parsing, and audio decoder.
 - device: mic startup/configuration, signal generation, install/remove tools, and callback tests.
 - Tests/FXTalkCoreTests: host-side routing, serial, and audio tests.
+
+## Sleep and restart recovery
+
+`ControlSession` keeps the user’s enabled choice separate from sleeping, awaiting release, and ready states. The choice is saved in local preferences. On Mac sleep, the host stops the receiver and releases any held keys without changing that choice. Hardware polling stays paused until the wake notification.
+
+After wake, the host resolves the saved audio device UID again, reconnects, and feeds no active controls to the routers until a report shows both paddle and orange released. That released report arms the edge routers, so the next deliberate press works. The same release requirement applies after app launch and input reconnection. A manually disabled session remains disabled. The existing one-squeeze recovery from the mic’s own battery sleep is retained for a known, previously released mic.
