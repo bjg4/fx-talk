@@ -32,7 +32,7 @@ Candidate 0.4.1 adopts the shared Blakeist release toolkit, with an audio-input 
 | Release the paddle                                     | Finish dictation              |
 | Tap the small top orange button after the words appear | Press Enter in the active app |
 
-The active app decides what Enter does: send a message, run a terminal command, or insert a newline. White buttons are currently unmapped. After launching FX Talk or waking your Mac, enable mic shortcuts again.
+The active app decides what Enter does: send a message, run a terminal command, or insert a newline. White buttons are currently unmapped. In the published v0.4.0 preview, enable mic shortcuts again after launching FX Talk or waking your Mac. The v0.4.1 candidate remembers your on/off choice across app restarts and Mac sleep, reconnects automatically, and requires both controls to be released before resuming. A fresh installation starts with shortcuts off.
 
 FX Talk decodes button signals locally. Your separate dictation app handles recording and transcription. FX Talk does not save recordings, inspect draft text, or send network requests.
 

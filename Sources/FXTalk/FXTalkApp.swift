@@ -43,10 +43,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func refreshMenu() {
         let symbol = model.shortcutHeld ? "waveform.circle.fill" : "waveform"
         item.button?.image = NSImage(systemSymbolName: symbol, accessibilityDescription: "FX Talk")
-        item.button?.toolTip = "FX Talk — " + model.deviceStatus
+        item.button?.toolTip = "FX Talk — " + model.shortcutStatus
         let menu = NSMenu()
         let status = menu.addItem(withTitle: model.deviceStatus, action: nil, keyEquivalent: "")
         status.isEnabled = false
+        let shortcuts = menu.addItem(withTitle: model.shortcutStatus, action: nil, keyEquivalent: "")
+        shortcuts.isEnabled = false
         menu.addItem(.separator())
         let toggle = menu.addItem(withTitle: model.enabled ? "Disable mic shortcuts" : "Enable mic shortcuts", action: #selector(toggleEnabled), keyEquivalent: "")
         toggle.target = self; toggle.isEnabled = model.trusted

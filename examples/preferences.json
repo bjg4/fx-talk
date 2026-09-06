@@ -9,5 +9,6 @@
   "mode": "hold",
   "transport": "audio",
   "audioDeviceUID": "",
-  "orangeSubmits": true
+  "orangeSubmits": true,
+  "shortcutsEnabled": false
 }

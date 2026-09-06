@@ -18,7 +18,7 @@ The first asset is `assets/fx-talk-banner.svg`, used by the README. A short real
 
 - The original FX Talk code is licensed under [MIT](../LICENSE). Tingle’s MIT license and attribution remain intact; [NOTICE.md](../NOTICE.md) identifies adapted code and FX Talk-specific work.
 - Review repository history, release archives, signing-certificate identity, and Actions logs as public material. Exclude credentials, private keys, recordings, and device backups. Keep a clean copy of the accepted v0.4.0 package.
-- Keep v0.4.0 marked as a prerelease with its exact tested configuration and known limitations.
+- Keep the current release marked as a prerelease with its exact tested configuration and known limitations.
 - Provide reproducible build instructions and a clear way to report device, firmware, adapter, macOS, dictation app, and the observed behavior without uploading private text or recordings.
 
 Making a repository public exposes its contents and Actions history/logs. See [GitHub’s visibility guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility). The [MIT license](https://choosealicense.com/licenses/mit/) allows reuse, modification, and redistribution with its notice retained.
@@ -30,7 +30,7 @@ The release goal is that a new user can install and complete the audio-only acce
 1. **Complete backup and restore.** Back up the entire mic disk, including subfolders. Record the original and installed files per mic. Check payload integrity and compatibility before changes, stage writes, read them back, and preserve a recovery path if installation stops. The current helper only makes an extra top-level backup and is not a migration wizard.
 2. **Guided setup.** Select the input, verify 48 kHz and the button signal, explain microphone/Accessibility access, guide the matching dictation shortcut, and test both controls in a scratch text field. Avoid automating Monologue’s shortcut recorder, which previously triggered keyboard doubling during setup.
 3. **Distribution.** Add and test hardened runtime with required audio permissions, secure-timestamped Developer ID signing, Apple notarization, and a stapled ticket. Test a fresh download on another Mac. Follow [Apple’s notarization requirements](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
-4. **Recovery and feedback.** Offer launch at login and an explicit opt-in to resume after Mac sleep once controls have been released. Make disconnected, ready, and shortcut-held states visible. Indicate an Enter event without claiming the target app actually submitted it.
+4. **Recovery and feedback.** Version 0.4.1 preserves the enabled choice across sleep and app restarts, requiring released controls before resuming. Offer launch at login next. Make disconnected, ready, and shortcut-held states visible. Indicate an Enter event without claiming the target app actually submitted it.
 5. **Independent beta testing.** Start with a small group. Verify fresh setup and removal on at least two FX-MICs and two Macs; document the exact firmware, adapters, and dictation apps. Include a 30-second hold, rapid/repeated presses, startup-held buttons, battery sleep, Mac sleep, adapter disconnect/reconnect, normal typing, and one Enter per accepted press.
 
 ## After setup and recovery are dependable

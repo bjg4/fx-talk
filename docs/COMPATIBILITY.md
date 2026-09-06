@@ -1,6 +1,15 @@
 # Compatibility and release status
 
-## Verified
+## v0.4.1 recovery candidate
+
+- Installed on the test Mac with the existing Developer ID identity and working keyboard permission.
+- Restoring the enabled choice after quitting and reopening the app was verified locally.
+- 31 Swift tests and nine Python device tests pass, including seven new recovery tests.
+- A physical Mac sleep/wake acceptance test is pending.
+- The public download remains v0.4.0 until the release pipeline’s signing, notarization, and downloaded-artifact acceptance checks are complete. Hosted workflows remain manual and are not run for this local update.
+- The mic payload and dictation shortcut are unchanged from the v0.4.0 setup below.
+
+## Verified hardware and v0.4.0 baseline
 
 - App: FX Talk 0.4.0, Apple silicon (arm64), exact installed executable.
 - Physical test Mac: M4 MacBook Air, macOS 15.6.1. Declared app minimum: macOS 13.

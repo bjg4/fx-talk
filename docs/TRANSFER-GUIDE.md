@@ -1,10 +1,12 @@
-# FX Talk 0.4.0 — move to another Mac
+# FX Talk 0.4.1 candidate — move to another Mac
 
 Hold the large paddle to dictate. Release it to finish. Once the words appear, tap the small top orange button to press Enter in the active app. White buttons are currently unmapped.
 
+The published v0.4.0 preview remains available on [Releases](https://github.com/bjg4/fx-talk/releases/tag/v0.4.0). This guide describes the v0.4.1 candidate; public replacement packages still need the repository’s signing, notarization, and physical acceptance checks.
+
 ## Included
 
-- FX Talk.app: the exact Apple-silicon build verified on the original Mac.
+- FX Talk.app: the Apple-silicon candidate build; see Compatibility and Next Features for tested scope.
 - Mic Setup: startup script, clean-speech configuration, four audio signals, installation and removal tools.
 - Source: Swift app, Python device code, tests, build script, and Tingle license.
 - Portable Settings.json: the working shortcut/mapping without any computer-specific audio identifier.
@@ -12,6 +14,10 @@ Hold the large paddle to dictate. Release it to finish. Once the words appear, t
 - SHA256SUMS.json: checksums of every file in this kit except this checksum file.
 
 No dictation-account credentials, recordings, personal device backups, or signing private keys are included. Monologue and other transcription apps are separate installations.
+
+## Upgrading from 0.4.0
+
+Quit FX Talk and replace the app in Applications with version 0.4.1. Keep the existing mic setup. On the first launch after upgrading, enable mic shortcuts once to save your choice. Future app restarts and Mac sleep/wake cycles restore that choice automatically after the mic reconnects and both controls are released.
 
 ## Same prepared mic, another Mac
 
@@ -52,10 +58,10 @@ Removal uses the installed-file checksums, stops if a managed file changed, and 
 
 ## Daily use
 
-FX Talk remains in the menu bar when its window closes. Mic shortcuts start disabled after launching FX Talk or waking the Mac; enable them again. On batteries the mic sleeps after five idle minutes and powers off after twenty. Squeeze to wake it from sleep; power it on if it has turned off.
+FX Talk remains in the menu bar when its window closes. FX Talk remembers whether you enabled mic shortcuts. It releases held shortcuts before Mac sleep, reconnects to the saved audio adapter after wake, and resumes once both controls are released. The saved choice also survives app restarts; choosing Off stays Off. A fresh installation starts with shortcuts off. This does not automatically launch the app when you log in. On batteries the mic sleeps after five idle minutes and powers off after twenty. Squeeze to wake it from sleep; power it on if it has turned off.
 
 Orange sends an unmodified Return wherever the cursor is. The active app decides whether that sends a message, executes a terminal command, or inserts a newline. Press after the transcript is ready; presses during dictation are ignored. One held press does not repeat, and an 800 ms duplicate-press guard remains in place.
 
 ## Source and rebuilding
 
-Source/fx-talk contains the complete source and third-party license. Building needs Swift 5.10 or later, Xcode command-line tools, and Python 3. From that source folder, run zsh build.sh. It runs 24 Swift tests and nine Python tests. The default signature is ad hoc; use your own stable FX_TALK_SIGN_IDENTITY to preserve permission identity across builds. A signing private key is not distributed in this kit.
+Source/fx-talk contains the complete source and third-party license. Building needs Swift 5.10 or later, Xcode command-line tools, and Python 3. From that source folder, run zsh build.sh. It runs 31 Swift tests and nine Python tests. The default signature is ad hoc; use your own stable FX_TALK_SIGN_IDENTITY to preserve permission identity across builds. A signing private key is not distributed in this kit.

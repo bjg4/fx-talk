@@ -140,7 +140,7 @@ struct SettingsView: View {
                     Toggle(isOn: $model.enabled) {
                         VStack(alignment: .leading, spacing: 3) {
                             Text(model.enabled ? "Mic shortcuts enabled" : "Enable mic shortcuts").fontWeight(.semibold)
-                            Text(model.shortcutHeld ? "Shortcut held — release the mic to finish." : "Focus an agent’s text field, then use the mic.")
+                            Text(model.shortcutStatus)
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                     }.toggleStyle(.switch).disabled(!model.trusted || (model.preferences.transport == .audio && !model.audioAllowed))
@@ -156,7 +156,7 @@ struct SettingsView: View {
                         Button("Copy diagnostics") { model.copyDiagnostics() }
                     }.frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
                 }.font(.caption).foregroundStyle(.secondary)
-                Text("FX Talk 0.4.0 · Button decoding stays on your Mac. Your chosen dictation app transcribes the speech.")
+                Text("FX Talk \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "development") · Button decoding stays on your Mac. Your chosen dictation app transcribes the speech.")
                     .font(.system(size: 10)).foregroundStyle(.tertiary)
             }.padding(28)
         }.frame(minWidth: 640, minHeight: 700).tint(orange)

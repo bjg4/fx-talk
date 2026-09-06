@@ -37,8 +37,9 @@ struct Preferences: Codable {
     var transport = ControlTransport.audio
     var audioDeviceUID = ""
     var orangeSubmits = false
+    var shortcutsEnabled = false
     init() {}
-    enum CodingKeys: String, CodingKey { case app, shortcut, control, mode, calibration, transport, audioDeviceUID, orangeSubmits }
+    enum CodingKeys: String, CodingKey { case app, shortcut, control, mode, calibration, transport, audioDeviceUID, orangeSubmits, shortcutsEnabled }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         app = try c.decodeIfPresent(DictationApp.self, forKey: .app) ?? .monologue
@@ -49,12 +50,31 @@ struct Preferences: Codable {
         transport = try c.decodeIfPresent(ControlTransport.self, forKey: .transport) ?? .audio
         audioDeviceUID = try c.decodeIfPresent(String.self, forKey: .audioDeviceUID) ?? ""
         orangeSubmits = try c.decodeIfPresent(Bool.self, forKey: .orangeSubmits) ?? false
+        shortcutsEnabled = try c.decodeIfPresent(Bool.self, forKey: .shortcutsEnabled) ?? false
     }
 }
 
 final class AppModel: ObservableObject {
     @Published var preferences = Preferences() { didSet { settingsChanged(previous: oldValue) } }
-    @Published var enabled = false { didSet { releaseControls(); refreshMenu?() } }
+    @Published private(set) var controlSession = ControlSession()
+    var enabled: Bool {
+        get { controlSession.enabled }
+        set {
+            guard newValue != controlSession.enabled else { return }
+            controlSession.setEnabled(newValue)
+            releaseControls()
+            if !loading { preferences.shortcutsEnabled = newValue }
+            refreshMenu?()
+        }
+    }
+    var shortcutStatus: String {
+        guard enabled else { return "Mic shortcuts are off. Turn them on when you are ready." }
+        if controlSession.phase == .sleeping { return "Paused for Mac sleep. Shortcuts will resume after wake." }
+        if !connected { return "Waiting for the mic. Shortcuts will resume when it reconnects." }
+        if controlSession.phase == .awaitingRelease { return "Release the paddle and orange button to resume shortcuts." }
+        if shortcutHeld { return "Shortcut held — release the mic to finish." }
+        return "Ready. Your on/off choice is remembered across sleep and app restarts."
+    }
     @Published var ports: [MicPort] = []
     @Published var selectedPort = "" { didSet { if selectedPort != oldValue { reconnect() } } }
     @Published var deviceStatus = "Connect the FX-MIC with a USB-C data cable."
@@ -91,6 +111,7 @@ final class AppModel: ObservableObject {
     private var lastButtonStates: [Bool] = []
     private var loading = true
     private var sleepObserver: NSObjectProtocol?
+    private var wakeObserver: NSObjectProtocol?
     private var preferencesFile: URL {
         FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("FX Talk/preferences.json")
@@ -99,16 +120,40 @@ final class AppModel: ObservableObject {
     init() {
         if let data = try? Data(contentsOf: preferencesFile),
            let saved = try? JSONDecoder().decode(Preferences.self, from: data) { preferences = saved }
+        controlSession = ControlSession(enabled: preferences.shortcutsEnabled)
         loading = false
         refreshHardware()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in self?.tick() }
         sleepObserver = NSWorkspace.shared.notificationCenter.addObserver(
             forName: NSWorkspace.willSleepNotification, object: nil, queue: .main) { [weak self] _ in
-                self?.disconnect(); self?.enabled = false
+                self?.macWillSleep()
             }
+        wakeObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didWakeNotification, object: nil, queue: .main) { [weak self] _ in
+                self?.macDidWake()
+            }
+    }
+    private func macWillSleep() {
+        controlSession.sleep()
+        testingButton = false
+        disconnect()
+        deviceStatus = "Mac sleeping — audio input paused."
+        log("Mac sleeping; shortcuts \(enabled ? "enabled" : "disabled") choice preserved")
+        refreshMenu?()
+    }
+    private func macDidWake() {
+        controlSession.wake()
+        // Core Audio can reuse numeric IDs for a different input after wake.
+        // Resolve the selection again using the saved device UID.
+        audioSelection = 0
+        failedPorts.removeAll()
+        log("Mac woke; reconnecting with shortcuts \(enabled ? "enabled" : "disabled")")
+        refreshHardware()
+        refreshMenu?()
     }
     private var tickCount = 0
     private func tick() {
+        guard controlSession.phase != .sleeping else { return }
         tickCount += 1
         let access = keyboard.isTrusted
         if trusted != access { trusted = access; refreshMenu?() }
@@ -127,6 +172,7 @@ final class AppModel: ObservableObject {
         if tickCount % 4 == 0 { refreshHardware() }
     }
     func refreshHardware() {
+        guard controlSession.phase != .sleeping else { return }
         let found = MicPort.discover()
         let previous = Set(ports.map(\.path))
         let current = Set(found.map(\.path))
@@ -174,6 +220,7 @@ final class AppModel: ObservableObject {
         let token = UUID(); generation = token
         let receiver = AudioControlReceiver()
         audioDeviceID = input.id
+        audioSelection = input.id
         router = ControlRouter(debounce: 0) // The mic debounces and the decoder validates each full state frame.
         receiver.onState = { [weak self] event in
             guard let self, self.generation == token else { return }
@@ -237,6 +284,7 @@ final class AppModel: ObservableObject {
         disconnect(); failedPorts.removeAll(); refreshHardware()
     }
     private func disconnect() {
+        controlSession.requireRelease()
         generation = UUID(); connection?.stop(); connection = nil
         audioReceiver?.stop(); audioReceiver = nil; audioDeviceID = 0; audioLevel = 0
         connected = false; snapshot = nil; lastButtonStates = []; releaseControls()
@@ -246,13 +294,14 @@ final class AppModel: ObservableObject {
             // A known, released mic that sleeps may wake with the next squeeze.
             // Initial connections and connections lost while held still require
             // release first. Orange is always rearmed separately after release.
-            let mayWake = enabled && !shortcutHeld && snapshot?.paddle == false
+            let mayWake = enabled && controlSession.phase == .ready && !shortcutHeld && snapshot?.paddle == false
             connected = false; releaseControls(); resumePaddleOnWake = mayWake
         }
         deviceStatus = "Mic signal paused — squeeze to wake, or check the audio cable."
         refreshMenu?()
     }
     private func receive(_ sample: DeviceSnapshot) {
+        guard controlSession.phase != .sleeping else { return }
         let now = ProcessInfo.processInfo.systemUptime
         let first = !connected
         let wakingFromReleased = first && resumePaddleOnWake
@@ -277,7 +326,14 @@ final class AppModel: ObservableObject {
             paddlePressed = calibration.pressed(raw: sample.rawPosition, wasPressed: paddlePressed)
         } else { paddlePressed = sample.paddle }
         let pressed = preferences.control == .paddle ? paddlePressed : sample.orange
-        let canSend = enabled && trusted && calibrationStep == 0 && !testingButton
+        var nextSession = controlSession
+        let controlsReady = nextSession.observe(paddle: paddlePressed, orange: sample.orange)
+        if nextSession != controlSession {
+            controlSession = nextSession
+            log("Both controls released; mic shortcuts ready")
+            refreshMenu?()
+        }
+        let canSend = controlsReady && trusted && calibrationStep == 0 && !testingButton
         if wakingFromReleased && canSend && preferences.control == .paddle && preferences.mode == .hold {
             _ = router.update(pressed: false, at: now, enabled: true, mode: .hold)
             log("Known mic woke from idle; paddle ready")
@@ -396,5 +452,11 @@ final class AppModel: ObservableObject {
         NSPasteboard.general.clearContents(); NSPasteboard.general.setString(report, forType: .string)
         notice = "Diagnostics copied. They contain device controls, not audio or transcripts."
     }
-    func stop() { testingButton = false; timer?.invalidate(); disconnect() }
+    func stop() {
+        testingButton = false; timer?.invalidate(); disconnect()
+        let center = NSWorkspace.shared.notificationCenter
+        if let sleepObserver { center.removeObserver(sleepObserver) }
+        if let wakeObserver { center.removeObserver(wakeObserver) }
+        sleepObserver = nil; wakeObserver = nil
+    }
 }
