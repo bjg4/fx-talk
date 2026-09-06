@@ -4,7 +4,7 @@
 
 FX Talk is an independent macOS utility for the Teenage Engineering EP–2350 FX-MIC. Its promise is specific: hold the paddle to dictate, release to finish, then tap orange to press Enter in the active app. Normal operation uses the curly audio cable and a USB audio input adapter.
 
-Describe the current release as **experimental, with assisted setup**. It depends on a separate dictation app. One hardware combination has been physically verified. Do not claim universal hardware compatibility or an unattended installer.
+Describe the current release as **experimental, with assisted setup**. Version 0.4.1 remains a Developer ID-signed, non-notarized prerelease; it has not been promoted through the Blakeist verified-release channel. Real Mac sleep/wake acceptance is deferred. It depends on a separate dictation app. One hardware combination has been physically verified. Do not claim universal hardware compatibility or an unattended installer.
 
 Development credit: **Built with GPT-6 Astra in Codex.** Human credit: Blake Graham for product direction and physical testing. Technical credit: Tingle's chirp synthesis and matched-filter detector, with its existing MIT notice retained. Do not imply Teenage Engineering or OpenAI sponsorship or endorsement.
 

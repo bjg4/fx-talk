@@ -1,12 +1,12 @@
 # Compatibility and release status
 
-## v0.4.1 recovery candidate
+## v0.4.1 recovery prerelease
 
 - Installed on the test Mac with the existing Developer ID identity and working keyboard permission.
 - Restoring the enabled choice after quitting and reopening the app was verified locally.
 - 31 Swift tests and nine Python device tests pass, including seven new recovery tests.
-- A physical Mac sleep/wake acceptance test is pending.
-- The public download remains v0.4.0 until the release pipeline’s signing, notarization, and downloaded-artifact acceptance checks are complete. Hosted workflows remain manual and are not run for this local update.
+- The physical Mac sleep/wake acceptance test was explicitly deferred; automated recovery tests do not replace that check.
+- This is a Developer ID-signed, non-notarized prerelease, matching the distribution type of v0.4.0. It has not been promoted through the Blakeist verified-release channel. Apple notarization and the remaining physical acceptance checks are pending. Hosted workflows remain manual and were not run for this update.
 - The mic payload and dictation shortcut are unchanged from the v0.4.0 setup below.
 
 ## Verified hardware and v0.4.0 baseline

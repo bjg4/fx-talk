@@ -1,12 +1,12 @@
-# FX Talk 0.4.1 candidate — move to another Mac
+# FX Talk 0.4.1 — move to another Mac
 
 Hold the large paddle to dictate. Release it to finish. Once the words appear, tap the small top orange button to press Enter in the active app. White buttons are currently unmapped.
 
-The published v0.4.0 preview remains available on [Releases](https://github.com/bjg4/fx-talk/releases/tag/v0.4.0). This guide describes the v0.4.1 candidate; public replacement packages still need the repository’s signing, notarization, and physical acceptance checks.
+Download v0.4.1 from [Releases](https://github.com/bjg4/fx-talk/releases/tag/v0.4.1). This is a Developer ID-signed prerelease, not yet notarized. Mac sleep/wake acceptance is deferred. The previous v0.4.0 package remains available for rollback.
 
 ## Included
 
-- FX Talk.app: the Apple-silicon candidate build; see Compatibility and Next Features for tested scope.
+- FX Talk.app: the signed Apple-silicon prerelease; see Compatibility and Next Features for tested scope.
 - Mic Setup: startup script, clean-speech configuration, four audio signals, installation and removal tools.
 - Source: Swift app, Python device code, tests, build script, and Tingle license.
 - Portable Settings.json: the working shortcut/mapping without any computer-specific audio identifier.
